@@ -1,3 +1,8 @@
+<?php
+
+require_once "db_functions.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
