@@ -11,10 +11,11 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Hide horizontal overflow */
 }
 
 .header {
-  position: fixed;
+  position:relative;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -76,20 +77,17 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  margin-top: 100px; /* Add top margin to create space for the header */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  width: 100%; /* Ensure full width */
 }
-
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: repeat(8, 20px); /* Adjusted width for columns */
-  grid-template-rows: repeat(10, 50px); /* Adjusted height for rows */
-  grid-gap: 20px;
+h3 {
+  text-align: center;
 }
 
 .seat {
@@ -112,7 +110,7 @@ h1 {
 .legend {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .legend-item {
@@ -144,17 +142,29 @@ h1 {
 }
 
 .available-seats {
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 1.2em;
+  text-align: center; /* Center text */
 }
 
-.seat-image {
-  position: absolute;
-  left: 700px; /* Adjust the distance from the left edge */
-  top: calc(var(--index) * 70px + 150px); /* Position each image in a row */
-  transform: translateY(-50%);
-  width: 80px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: 20px; /* Add margin bottom to create space under each image */
+.layout.tables-chairs {
+  display: grid;
+  grid-template-columns: repeat(8, 40px); /* Adjusted width for columns */
+  grid-template-rows: repeat(20, 40px); /* Adjusted height for rows */
+  grid-gap: 10px; /* Adjusted gap between seats */
 }
 
+.layout.computer {
+  display: grid;
+  grid-template-columns: repeat(9, 40px); /* Adjusted width for columns */
+  grid-template-rows: repeat(1, 40px); /* Adjusted height for rows */
+  grid-gap: 10px; /* Adjusted gap between seats */
+}
+
+.layout.graduate {
+  display: grid;
+  grid-template-columns: repeat(10, 40px); /* Adjusted width for columns */
+  grid-template-rows: repeat(3, 40px); /* Adjusted height for rows */
+  grid-gap: 10px; /* Adjusted gap between seats */
+}

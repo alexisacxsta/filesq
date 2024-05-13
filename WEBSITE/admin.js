@@ -32,6 +32,25 @@ toggleBtn.addEventListener('click', (event) => {
     sideBarIsOpen = !sideBarIsOpen;
 });
 
+// Function to load content dynamically
+function loadContent(url) {
+    const mainContent = document.querySelector('.main_content');
+    
+    // Clear existing content
+    mainContent.innerHTML = '';
+
+    // Create an iframe element
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none'; // Optional: Remove iframe border
+
+    // Append the iframe to the main content area
+    mainContent.appendChild(iframe);
+}
+
+
 // Event listener for Tables and Chairs menu item
 document.getElementById('tnc-ad').addEventListener('click', function(event) {
     event.preventDefault();
@@ -45,11 +64,11 @@ document.getElementById('tnc-ad').addEventListener('click', function(event) {
     // Add 'menuActive' class to the clicked menu item
     this.closest('li').classList.add('menuActive');
 
-    loadContent('tnc-ad.html');
+    loadContent('tnc-ad.html'); // Load content dynamically
 });
 
 // Event listener for Books menu item
-document.querySelector('.menu_list li').addEventListener('click', function(event) {
+document.getElementById('booksMenu').addEventListener('click', function(event) {
     event.preventDefault();
     console.log('Books menu clicked'); // Check if event listener is triggered
     
@@ -59,14 +78,17 @@ document.querySelector('.menu_list li').addEventListener('click', function(event
     });
     
     // Add 'menuActive' class to the clicked menu item
-    this.classList.add('menuActive');
+    this.closest('li').classList.add('menuActive');
 
-    loadContent('index.php');
+    loadContent('index.php'); // Load content dynamically
 });
 
-// Function to load content dynamically
-function loadContent(url) {
-    const mainContent = document.querySelector('.main_content');
-    mainContent.innerHTML = ''; // Clear existing content
-    mainContent.innerHTML = `<object type="text/html" data="${url}" style="width: 100%; height: 100%;"></object>`;
+// Check if user is a Seat Admin or Library Admin and adjust menu items accordingly
+const userType = localStorage.getItem('userType');
+if (userType === "seat-admin") {
+    document.getElementById('booksMenu').style.display = 'none';
+    document.getElementById('userType').textContent = 'Seat Admin';
+} else if (userType === "library-admin") {
+    document.getElementById('userType').textContent = 'Library Admin';
 }
+
